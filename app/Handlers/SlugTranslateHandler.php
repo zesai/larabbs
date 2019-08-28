@@ -8,6 +8,11 @@ use Overtrue\Pinyin\Pinyin;
 
 class SlugTranslateHandler
 {
+    /**
+     * 百度翻译
+     * @param $text
+     * @return string
+     */
     public function translate($text)
     {
         //实例化 HTTP 客户端
@@ -53,6 +58,11 @@ class SlugTranslateHandler
         }
     }
 
+    /**
+     * 拼音
+     * @param $text
+     * @return string
+     */
     public function pinyin($text)
     {
         return str_slug(app(Pinyin::class)->permalink($text));

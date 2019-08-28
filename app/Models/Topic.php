@@ -18,6 +18,11 @@ class Topic extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
     /**
      * 本地作用域 使用scope开头，调用时 withOrder()即可
      * @param $query [查询构造器(默认传参)]
@@ -63,5 +68,11 @@ class Topic extends Model
     public function link($params = [])
     {
         return route('topics.show', array_merge([$this->id,$this->slug]), $params);
+    }
+
+    public function updateReplyCount()
+    {
+        $this->reply_count = $this->replies->count();
+        $this->save();
     }
 }
