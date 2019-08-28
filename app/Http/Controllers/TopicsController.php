@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Handlers\ImageUploadHandler;
+use App\Markdown\Markdown;
+use App\Markdown\Parser;
 use App\Models\Category;
 use App\Models\Topic;
 use Illuminate\Http\Request;
@@ -10,9 +12,12 @@ use App\Http\Requests\TopicRequest;
 use Auth;
 class TopicsController extends Controller
 {
-    public function __construct()
+    protected $markdown;
+
+    public function __construct(Markdown $markdown)
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->markdown = $markdown;
     }
 
     /**
@@ -38,7 +43,9 @@ class TopicsController extends Controller
         if ( ! empty($topic->slug) && $topic->slug != $request->slug) {
             return redirect($topic->link(), 301);
         }
-        return view('topics.show', compact('topic'));
+
+        $topic->body = $this->markdown->toHtml($topic->body);
+        return view('topics.show', compact('topic') );
     }
 
     /**
@@ -122,9 +129,8 @@ class TopicsController extends Controller
             'msg'       => '上传失败!',
             'file_path' => ''
         ];
-
-        if ($file = $request->upload_file){
-            $result = $uploader->save($request->upload_file, 'topics', \Auth::id(), 1024);
+        if ($file = $request->file){
+            $result = $uploader->save($request->file, 'topics', \Auth::id(), 1024);
             if($result){
                $data['file_path']  = $result['path'];
                $data['msg']        = '上传成功!';

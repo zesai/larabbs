@@ -1,10 +1,9 @@
 @extends('layouts.app')
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/simditor.css') }}" type="text/css">
+     <link rel="stylesheet" href="{{ asset('simplemde/dist/simplemde.min.css') }}" type="text/css">
 @stop
 
 @section('content')
-
 <div class="container">
   <div class="col-md-10 offset-md-1">
     <div class="card ">
@@ -63,28 +62,74 @@
 @endsection
 
 @section('scripts')
-    <script type="text/javascript" src="{{ asset('js/module.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/hotkeys.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/uploader.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/simditor.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="text/javascript" src="{{ asset('simplemde/dist/simplemde.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('markdown/js/inline-attachment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('markdown/js/codemirror-4.inline-attachment.min.js') }}"></script>
+
 
     <script>
         $(document).ready(function() {
-            var editor = new Simditor({
-                textarea: $('#editor'),
-                upload:{
-                    url : '{{ route('topics.upload_image') }}',
-                    params : {
-                        _token : '{{ csrf_token() }}'
-                    },
-                    //是服务器端获取图片的键值
-                    fileKey : 'upload_file',
-                    //最多只能同时上传 3 张图片
-                    connectionCount : 3,
-                    leaveConfirm : '文件上传中，关闭此页面将取消上传'
+            var simplemde = new SimpleMDE({
+                autofocus: true,
+                element: document.getElementById("editor"),
+                spellChecker: false,
+                autosave: {
+                    enabled: true,
+                    delay: 5000,
+                    unique_id: "editor"
                 },
-                //设定是否支持图片黏贴上传，这里我们使用 true 进行开启
-                pasteImage : true,
+                forceSync: true,
+                toolbar: [
+                    "bold", "italic", "heading", "|", "quote", "code", "table",
+                    "horizontal-rule", "unordered-list", "ordered-list", "|",
+                    "link", "image", "|", "side-by-side", 'fullscreen', "|",
+                    {
+                        name: "guide",
+                        action: function customFunction(editor) {
+                            var win = window.open('https://github.com/riku/Markdown-Syntax-CN/blob/master/syntax.md', '_blank');
+                            if (win) {
+                                //Browser has allowed it to be opened
+                                win.focus();
+                            } else {
+                                //Browser has blocked it
+                                alert('Please allow popups for this website');
+                            }
+                        },
+                        className: "fa fa-info-circle",
+                        title: "Markdown 语法！"
+                    }
+                ],
+            });
+
+            // 在已有的 simplemde 对象的基础上再增加图片拖拽
+            inlineAttachment.editors.codemirror4.attach(simplemde.codemirror, {
+                // 传递 CSRF token
+                extraParams: {
+                    '_token': "{{ csrf_token() }}",
+                },
+
+                // 设置图片上传的地址
+                uploadUrl: '{{ route('topics.upload_image') }}',
+
+                // 上传之后的处理
+                onFileUploadResponse: function(xhr) {
+
+                    var result = JSON.parse(xhr.responseText),
+                        filename = result.file_path;
+                    if (result && filename) {
+                        var newValue;
+                        if (typeof this.settings.urlText === 'function') {
+                            newValue = this.settings.urlText.call(this, filename, result);
+                        } else {
+                            newValue = this.settings.urlText.replace(this.filenameTag, filename);
+                        }
+                        var text = this.editor.getValue().replace(this.lastValue, newValue);
+                        this.editor.setValue(text);
+                        this.settings.onFileUploaded.call(this, filename);
+                    }
+                    return false;
+                }
             });
         });
     </script>

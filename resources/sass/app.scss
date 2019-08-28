@@ -10,11 +10,15 @@
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 
+// 引入markdown样式文件
+//@import "../assets/css/vendor/markdown.scss";
+
 /* universal */
 
 body {
-  font-family: Helvetica, "Microsoft YaHei", Arial, sans-serif;
+  font-family: Helvetica,Arial,PingFang SC,Noto Sans,Roboto,Microsoft Yahei,sans-serif;
   font-size: 14px;
+  color: #636b6f;
 }
 
 /* header */

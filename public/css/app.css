@@ -16434,8 +16434,9 @@ readers do not read off random characters that represent icons */
 /* universal */
 
 body {
-  font-family: Helvetica, "Microsoft YaHei", Arial, sans-serif;
+  font-family: Helvetica, Arial, PingFang SC, Noto Sans, Roboto, Microsoft Yahei, sans-serif;
   font-size: 14px;
+  color: #636b6f;
 }
 
 /* header */
@@ -16551,7 +16552,6 @@ body {
 .topic-body {
   font-size: 15px;
   line-height: 1.3;
-  overflow: hidden;
   line-height: 1.6;
   word-wrap: break-word;
 }
@@ -16801,7 +16801,7 @@ body {
   border: 2px dashed #F0F4F6;
   border-bottom: 0px;
   margin: 18px auto;
-  width: 50%;
+  width: 100%;
 }
 
 .simditor-body ul,
@@ -16852,16 +16852,6 @@ body {
   padding: 0 15px;
   color: #777;
   border-left: 4px solid #ddd;
-}
-
-.simditor-body blockquote > :first-child,
-.topic-body blockquote > :first-child {
-  margin-top: 20px;
-}
-
-.simditor-body blockquote > :last-child,
-.topic-body blockquote > :last-child {
-  margin-bottom: 20px;
 }
 
 .simditor-body blockquote,

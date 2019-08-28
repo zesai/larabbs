@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title', $topic->title)
 @section('description', $topic->excerpt)
+@section('styles')
+    <link href="{{ asset('markdown/css/prism.css') }}" rel="stylesheet">
+    <link href="{{ asset('markdown/css/fluidbox.min.css') }}" rel="stylesheet">
+@endsection
 @section('content')
     <div class="row">
 
@@ -39,6 +43,9 @@
                     <div class="topic-body mt-4 mb-4">
                         {!! $topic->body !!}
                     </div>
+{{--                    <div class="markdown mt-4 mb-4">--}}
+{{--                        {!! $topic->body !!}--}}
+{{--                    </div>--}}
                     @can('update', $topic)
                         <div class="operate">
                             <hr>
@@ -69,3 +76,26 @@
         </div>
     </div>
 @stop
+@section('scripts')
+    <script src="{{ asset('markdown/js/prism.js') }}"></script>
+    <script src="{{ asset('markdown/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('markdown/js/jquery.ba-throttle-debounce.min.js') }}"></script>
+    <script src="{{ asset('markdown/js/jquery.fluidbox.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            // var img = $('p img');
+            // img.each(function (item) {
+            //
+            //     console.log(this.src);
+            // })
+            $('p img').wrap(function(){
+                return '<a href="' + this.src + '" title="' + this.alt + '"></a>';
+            });
+            $('a[title="file"]').fluidbox({
+                stackIndex:990,
+            });
+            // console.log($('a'));
+        })
+    </script>
+@endsection
