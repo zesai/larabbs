@@ -24,7 +24,10 @@
                     </div>
                 </div>
             </div>
+            <div class="card" id="toc">
+            </div>
         </div>
+
 
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 topic-content">
             <div class="card ">
@@ -84,18 +87,27 @@
 
     <script>
         $(document).ready(function () {
-            // var img = $('p img');
-            // img.each(function (item) {
-            //
-            //     console.log(this.src);
-            // })
+
             $('p img').wrap(function(){
                 return '<a href="' + this.src + '" title="' + this.alt + '"></a>';
             });
+
             $('a[title="file"]').fluidbox({
                 stackIndex:990,
             });
-            // console.log($('a'));
+
+            $("h2,h3,h4,h5,h6").each(function(i,item){
+                var tag = $(item).get(0).localName;
+                $(item).attr("id","title-"+i);
+                $(item).attr("class","list-item-"+i);
+                $("#toc").append('<a class="list-group-item list-group-item-action list-group-item-light list-item-'+i+'" href="#title-'+i+'" style="border: none">'+$(this).text()+'</a>');
+                $(".newh2").css("margin-left",0);
+                $(".newh3").css("margin-left",20);
+                $(".newh4").css("margin-left",40);
+                $(".newh5").css("margin-left",60);
+                $(".newh6").css("margin-left",80);
+            });
+
         })
     </script>
 @endsection
