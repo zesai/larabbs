@@ -4,30 +4,20 @@
 @section('styles')
     <link href="{{ asset('markdown/css/prism.css') }}" rel="stylesheet">
     <link href="{{ asset('markdown/css/fluidbox.min.css') }}" rel="stylesheet">
+    <style>
+        .left-box > div {
+            margin-bottom: 10px;
+        }
+    </style>
 @endsection
 @section('content')
     <div class="row">
 
-        <div class="col-lg-3 col-md-3 hidden-sm hidden-xs author-info">
-            <div class="card ">
-                <div class="card-body">
-                    <div class="text-center">
-                        作者：{{ $topic->user->name }}
-                    </div>
-                    <hr>
-                    <div class="media">
-                        <div align="center">
-                            <a href="{{ route('users.show', $topic->user->id) }}">
-                                <img class="thumbnail img-fluid" src="{{ $topic->user->avatar }}" width="300px" height="300px">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card" id="toc">
+        <div class="col-lg-3 col-md-3 hidden-sm hidden-xs author-info left-box">
+            @include('topics._left_author_info',['topic'=>$topic])
+            <div class="card" id="left-title-box">
             </div>
         </div>
-
 
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 topic-content">
             <div class="card ">
@@ -84,7 +74,7 @@
     <script src="{{ asset('markdown/js/jquery.min.js') }}"></script>
     <script src="{{ asset('markdown/js/jquery.ba-throttle-debounce.min.js') }}"></script>
     <script src="{{ asset('markdown/js/jquery.fluidbox.min.js') }}"></script>
-
+    <script src="{{ asset('js/scrollfix.min.js') }}"></script>
     <script>
         $(document).ready(function () {
 
@@ -92,21 +82,30 @@
                 return '<a href="' + this.src + '" title="' + this.alt + '"></a>';
             });
 
+            //文章图片点击放大
             $('a[title="file"]').fluidbox({
                 stackIndex:990,
             });
 
+            //文章标题栏
             $("h2,h3,h4,h5,h6").each(function(i,item){
-                var tag = $(item).get(0).localName;
+                // var tag = $(item).get(0).localName;
                 $(item).attr("id","title-"+i);
-                $(item).attr("class","list-item-"+i);
-                $("#toc").append('<a class="list-group-item list-group-item-action list-group-item-light list-item-'+i+'" href="#title-'+i+'" style="border: none">'+$(this).text()+'</a>');
-                $(".newh2").css("margin-left",0);
-                $(".newh3").css("margin-left",20);
-                $(".newh4").css("margin-left",40);
-                $(".newh5").css("margin-left",60);
-                $(".newh6").css("margin-left",80);
+                // $(item).attr("class","list-group-item list-group-item-action list-group-item-light list-item-"+i+ ' new'+tag);
+                // $(item).attr("href","#title-"+i+"");
+                // $("#toc").append(item);
+
+                $("#left-title-box").append('<a class="list-group-item list-group-item-action list-group-item-light list-item-'+i+'" href="#title-'+i+'" style="border: none">'+$(this).text()+'</a>');
+                // $(".newh2").css("margin-left",0);
+                // $(".newh3").css("margin-left",20);
+                // $(".newh4").css("margin-left",40);
+                // $(".newh5").css("margin-left",60);
+                // $(".newh6").css("margin-left",80);
             });
+
+            //左侧标题栏固定
+            var fixtop = $("#left-title-box");
+            fixtop.scrollFix({distanceTop:20});
 
         })
     </script>
