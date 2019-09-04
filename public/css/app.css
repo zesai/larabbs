@@ -16439,6 +16439,14 @@ body {
   color: #636b6f;
 }
 
+body {
+  background: #f0f2f5;
+}
+
+.card {
+  border: 1px solid #e3eaef;
+}
+
 /* header */
 
 .navbar-static-top {

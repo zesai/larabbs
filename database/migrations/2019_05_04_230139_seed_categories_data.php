@@ -30,6 +30,10 @@ class SeedCategoriesData extends Migration
                 'name'        => '关于本站',
                 'description' => '站点公告',
             ],
+            [
+                'name'        => 'MySQL',
+                'description' => 'MySQL 相关文章',
+            ],
         ];
         DB::table('categories')->insert($categories);
     }

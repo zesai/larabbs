@@ -15,6 +15,7 @@
                 <li class="nav-item {{ category_nav_active(1) }}"><a class="nav-link" href="{{ route('categories.show', 1) }}">PHP</a></li>
                 <li class="nav-item {{ category_nav_active(2) }}"><a class="nav-link" href="{{ route('categories.show', 2) }}">Laravel</a></li>
                 <li class="nav-item {{ category_nav_active(3) }}"><a class="nav-link" href="{{ route('categories.show', 3) }}">前端</a></li>
+                <li class="nav-item {{ category_nav_active(5) }}"><a class="nav-link" href="{{ route('categories.show', 5) }}">MySQL</a></li>
                 <li class="nav-item {{ category_nav_active(4) }}"><a class="nav-link" href="{{ route('categories.show', 4) }}">关于本站</a></li>
             </ul>
 
