@@ -50,7 +50,7 @@
         @include('layouts._footer')
     </div>
     {{--返回顶部--}}
-    <button id="back-to-top" href="#" data-toggle="tooltip" data-placement="left"  class="btn btn-primary btn-lg back-to-top" role="button" title="返回顶部" data-toggle="tooltip" data-placement="top">
+    <button id="back-to-top" href="#" data-toggle="tooltip" data-placement="left"  class="new-tooltip btn btn-primary btn-lg back-to-top" role="button" title="返回顶部">
         <i class="fa fa-chevron-up" aria-hidden="true"></i>
     </button>
     {{-- js --}}
@@ -60,28 +60,29 @@
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="http://cdn.bootcss.com/scrollup/2.4.0/jquery.scrollUp.min.js"></script>
     <script>
-        $(document).ready(function(){
+        // $(document).ready(function(){
             var back_top = $('#back-to-top');
-            back_top.tooltip({ boundary: 'window' });
+            $('.new-tooltip').tooltip();
+
             $(window).scroll(function () {
                 if ($(this).scrollTop() > 50) {
-                    $('#back-to-top').fadeIn();
+                    back_top.fadeIn();
                 } else {
-                    $('#back-to-top').fadeOut();
+                    back_top.fadeOut();
                 }
             });
             // scroll body to 0px on click
             back_top.click(function () {
-                // $('#back-to-top').tooltip('hide');
+                // back_top.tooltip('hide');
                 $('body,html').animate({
                     scrollTop: 0
                 }, 800);
                 return false;
             });
-            // $('#back-to-top').tooltip('show');
+            // back_top.tooltip('show');
 
 
-        });
+        // });
     </script>
     @yield('scripts')
 </body>

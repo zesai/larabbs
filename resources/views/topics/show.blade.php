@@ -22,23 +22,41 @@
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 topic-content">
             <div class="card ">
                 <div class="card-body">
+
                     <h1 class="text-center mt-3 mb-3">
-                        {{ $topic->title }}
+                        <div class="pull-left">
+                            <i class="grey file text outline icon"></i>
+                            <span style="line-height: 34px;">Elasticsearch 一些命令汇总 以及学习总结 </span>
+                        </div>
+                        <div class="clearfix"></div>
+{{--                        {{ $topic->title }}--}}
                     </h1>
 
-                    <div class="article-meta text-center text-secondary">
-                        {{ $topic->created_at->diffForHumans() }}
-                        ⋅
-                        <i class="far fa-comment"></i>
-                        {{ $topic->reply_count }}
-                    </div>
+                    <p class="book-article-meta" style="margin-bottom: 10px;">
+
+                        <a href="{{ route('categories.show', $topic->category->id) }}" title="分类" class="hide-on-mobile remove-padding-left"><i class="fa fa-folder" aria-hidden="true"></i> {{$topic->category->name}}</a>
+                        <span class="divider hide-on-mobile">/</span>
+                        <a class=" hide-on-mobile" href="#" title="作者">
+                            <img class="ui image display-inline-block" style="width:16px;height:16px;margin-top:-2px;" src="{{ $topic->user->avatar }}"> {{ $topic->user->name }}
+                        </a>
+                        <span class="divider hide-on-mobile">/</span>
+                        <a class="new-tooltip" data-inverted="" data-toggle="tooltip" title="{{ $topic->created_at }}" data-placement="bottom">
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                            <span title="{{ $topic->created_at }}">
+                                {{ $topic->created_at->diffForHumans() }}
+                            </span>
+                        </a>
+                        <span class="divider">/</span>
+                        <span class="text-mute"><i class="fa fa-eye" aria-hidden="true"></i> 609</span>
+                        <span class="divider">/</span>
+                        <span class="text-mute"><i class="far fa-comment" aria-hidden="true"></i>
+                        {{ $topic->reply_count }}</span>
+                    </p>
+                    <div class="ui divider"></div>
 
                     <div class="topic-body mt-4 mb-4">
                         {!! $topic->body !!}
                     </div>
-{{--                    <div class="markdown mt-4 mb-4">--}}
-{{--                        {!! $topic->body !!}--}}
-{{--                    </div>--}}
                     @can('update', $topic)
                         <div class="operate">
                             <hr>
@@ -77,7 +95,6 @@
     <script src="{{ asset('js/scrollfix.min.js') }}"></script>
     <script>
         $(document).ready(function () {
-
             $('p img').wrap(function(){
                 return '<a href="' + this.src + '" title="' + this.alt + '"></a>';
             });
