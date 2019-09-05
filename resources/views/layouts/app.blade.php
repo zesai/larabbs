@@ -73,13 +73,13 @@
             });
             // scroll body to 0px on click
             back_top.click(function () {
-                // back_top.tooltip('hide');
+                back_top.tooltip('hide');
                 $('body,html').animate({
                     scrollTop: 0
                 }, 800);
                 return false;
             });
-            // back_top.tooltip('show');
+            back_top.tooltip({'show':500});
 
 
         // });
