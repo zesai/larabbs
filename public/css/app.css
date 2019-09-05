@@ -17114,3 +17114,9 @@ body {
   color: rgba(0, 0, 0, 0.95);
 }
 
+.topic-list-right {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
