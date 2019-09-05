@@ -236,3 +236,17 @@ body {
 .pull-left {
   float: left;
 }
+
+/*header 头 选中鼠标移入*/
+#navbarSupportedContent li.active{
+  background: rgba(0,0,0,.05);
+  min-height: 100%;
+  border-radius: .28571429rem;
+  color: rgba(0,0,0,.95);
+}
+#navbarSupportedContent li:hover{
+  background: rgba(0,0,0,.05);
+  min-height: 100%;
+  border-radius: .28571429rem;
+  color: rgba(0,0,0,.95);
+}

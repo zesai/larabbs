@@ -17048,6 +17048,8 @@ body {
   background-color: #d15b47 !important;
 }
 
+/* 文章 meta */
+
 .book-article-meta a {
   color: #adb1af;
   margin: 22px 0;
@@ -17057,6 +17059,8 @@ body {
   color: #cacaca;
   margin: 0 5px;
 }
+
+/* 文章 meta 下的线 */
 
 .ui.divider:not(.vertical):not(.horizontal) {
   border-top: 1px solid #d3e0e9;
@@ -17086,5 +17090,27 @@ body {
       -ms-user-select: none;
           user-select: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* 左浮动 */
+
+.pull-left {
+  float: left;
+}
+
+/*header 头 选中鼠标移入*/
+
+#navbarSupportedContent li.active {
+  background: rgba(0, 0, 0, 0.05);
+  min-height: 100%;
+  border-radius: 0.28571429rem;
+  color: rgba(0, 0, 0, 0.95);
+}
+
+#navbarSupportedContent li:hover {
+  background: rgba(0, 0, 0, 0.05);
+  min-height: 100%;
+  border-radius: 0.28571429rem;
+  color: rgba(0, 0, 0, 0.95);
 }
 
