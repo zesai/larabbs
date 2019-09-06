@@ -25,11 +25,10 @@
 
                     <h1 class="text-center mt-3 mb-3">
                         <div class="pull-left">
-                            <i class="grey file text outline icon"></i>
-                            <span style="line-height: 34px;">Elasticsearch 一些命令汇总 以及学习总结 </span>
+                            <i class="fa fa-file-text-o"></i>
+                            <span style="line-height: 34px;">{{ $topic->title }}</span>
                         </div>
                         <div class="clearfix"></div>
-{{--                        {{ $topic->title }}--}}
                     </h1>
 
                     <p class="book-article-meta" style="margin-bottom: 10px;">

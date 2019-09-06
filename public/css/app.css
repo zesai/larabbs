@@ -16927,18 +16927,16 @@ body {
 .simditor-body img,
 .topic-body img {
   border: 1px solid #ddd;
-  box-shadow: 0 0 30px #ccc;
-  -moz-box-shadow: 0 0 30px #ccc;
-  -webkit-box-shadow: 0 0 30px #ccc;
   margin-bottom: 30px;
   margin-top: 10px;
+  box-shadow: 0 0 30px #aaa;
+  -moz-box-shadow: 0 0 30px #aaa;
+  -webkit-box-shadow: 0 0 30px #aaa;
 }
 
 .simditor-body code,
 .topic-body code {
-  background: rgba(90, 87, 87, 0);
   margin: 5px;
-  color: #858080;
   border-radius: 4px;
   background-color: #f9fafa;
   border: 1px solid #e4e4e4;

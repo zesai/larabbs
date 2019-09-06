@@ -6,9 +6,7 @@
                 <div class="mb-4" style="width: 100%;">
                     <div class="row no-gutters">
                         <div class="col-md-4">
-{{--                            <img src="..." class="card-img" alt="...">--}}
                             <a href="{{ $topic->link() }}">
-{{--                                <img class="media-object img-thumbnail mr-3" style="width: 52px; height: 52px;" src="{{ $topic->user->avatar }}" title="{{ $topic->user->name }}">--}}
                                 <img class="media-object img-thumbnail mr-3" style="width:100%;height:178.33px;" src="{{ $topic->user->avatar }}" title="{{ $topic->user->name }}">
                             </a>
                         </div>
