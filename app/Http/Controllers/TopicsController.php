@@ -6,10 +6,14 @@ use App\Handlers\ImageUploadHandler;
 use App\Markdown\Markdown;
 use App\Markdown\Parser;
 use App\Models\Category;
+use App\Models\Link;
 use App\Models\Topic;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\TopicRequest;
 use Auth;
+use Illuminate\Support\Facades\Cache;
+
 class TopicsController extends Controller
 {
     protected $markdown;
@@ -24,12 +28,18 @@ class TopicsController extends Controller
      * 话题首页
      * @param Request $request
      * @param Topic $topic
+     * @param User $user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-	public function index(Request $request, Topic $topic)
+	public function index(Request $request, Topic $topic, User $user, Link $link)
 	{
         $topics = $topic->withOrder($request->order)->paginate(20);
-		return view('topics.index', compact('topics'));
+
+        //获取活跃用户
+        $active_users = $user->getActiveUsers();
+        //获取推荐资源
+        $links = $link->getAllCached();
+		return view('topics.index', compact('topics', 'active_users', 'links'));
 	}
 
     /**

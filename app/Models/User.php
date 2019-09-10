@@ -10,6 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
+    use Traits\ActiveUserHelper;
     use HasRoles;
     use MustVerifyEmailTrait;
     use Notifiable {
@@ -19,7 +20,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function notify($instance)
     {
         //如果要通知的人是当前用户，就不必通知了！
-        if ($this->id == \Auth::id()) {
+        if ($this->id == Auth::id()) {
             return ;
         }
 

@@ -14,12 +14,13 @@ class UsersTableSeeder extends Seeder
         //app 获取 faker 实例
         $faker = app(Faker\Generator::class);
         $avatars = [
-            'http://larabbs.test/uploads/images/avatars/201908/14/1_1565753374_S3DSzmCFJ8.jpg',
-            'http://larabbs.test/uploads/images/avatars/201908/14/1_1565753374_S3DSzmCFJ8.jpg',
-            'http://larabbs.test/uploads/images/avatars/201908/14/1_1565753374_S3DSzmCFJ8.jpg',
-            'http://larabbs.test/uploads/images/avatars/201908/14/1_1565753374_S3DSzmCFJ8.jpg',
-            'http://larabbs.test/uploads/images/avatars/201908/14/1_1565753374_S3DSzmCFJ8.jpg',
-            'http://larabbs.test/uploads/images/avatars/201908/14/1_1565753374_S3DSzmCFJ8.jpg',
+            'http://larabbs.test/uploads/images/avatars/201909/09/1_1568032527_Ong8UlNVJZ.jpg',
+            'http://larabbs.test/uploads/images/avatars/201909/09/2_1568032850_COBM1bJti7.jpg',
+            'http://larabbs.test/uploads/images/avatars/201909/09/3_1568032893_orKFBmCOHR.jpg',
+            'http://larabbs.test/uploads/images/avatars/201909/09/4_1568032936_YgDW2dyYgF.jpeg',
+            'http://larabbs.test/uploads/images/avatars/201909/09/5_1568032960_YscAGydbMB.jpg',
+            'http://larabbs.test/uploads/images/avatars/201909/09/6_1568033293_nMBFk1Fx6f.jpeg',
+            'http://larabbs.test/uploads/images/avatars/201909/09/7_1568033314_Z30jMXczOf.jpeg',
         ];
 
         //生成数据集合
@@ -41,7 +42,7 @@ class UsersTableSeeder extends Seeder
         $user = User::find(1);
         $user->name = 'zesai';
         $user->email = 'zesai@163.com';
-        $user->avatar = 'http://larabbs.test/uploads/images/avatars/201908/14/1_1565753374_S3DSzmCFJ8.jpg';
+        $user->avatar = 'http://larabbs.test/uploads/images/avatars/201909/09/1_1568033631_wO5QxjSIBq.jpeg';
         $user->save();
 
         // 初始化用户角色，将 1 号用户指派为『站长』
